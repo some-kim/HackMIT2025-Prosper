@@ -131,7 +131,6 @@ export default function SignUp() {
       <Paragraph style={{ marginTop: -8, color: "#666" }}>
         Fill each page. The dots show your progress. Data saves on each “Next”.
       </Paragraph>
-
       <Steps
         current={current}
         items={stepsMeta.map((s) => ({ title: s.title }))}

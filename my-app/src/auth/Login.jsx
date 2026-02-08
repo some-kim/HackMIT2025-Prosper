@@ -9,7 +9,7 @@ export default function Login(){
     const { error } = await supabase.auth.signInWithPassword({ email, password });
     if (error) return message.error(error.message);
     message.success("Welcome back!");
-    nav("/onboarding"); // later: route by role to /app/individual or /app/corporate a little scared 
+    nav("/dashboard"); 
   };
 
   return (

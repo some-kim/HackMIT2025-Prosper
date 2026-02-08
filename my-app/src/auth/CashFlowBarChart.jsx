@@ -1,23 +1,24 @@
 import React from "react";
 import Plot from "react-plotly.js";
 
-const CashFlowBarChart = () => {
-  // --- Data Setup ---
-  const sarahData = {
-    salary: 85000 / 12,
-    freelance: 8000 / 12,
-    dividends: 1200 / 12,
-    rent: -1800,
-    utilities: -(120 + 45 + 35 + 65 + 35),
-    insurance: -(220 + 95 + 65),
-    debt_payments: -(425 + 180 + 295),
-    phone: -85,
-    gym: -65,
-    subscriptions: -25,
-    groceries: -(110 * 4.33),
-    dining_out: -(30 * 4.33),
-    gas_transport: -(45 * 4.33),
-  };
+const defaultSarahData = {
+  salary: 85000 / 12,
+  freelance: 8000 / 12,
+  dividends: 1200 / 12,
+  rent: -1800,
+  utilities: -(120 + 45 + 35 + 65 + 35),
+  insurance: -(220 + 95 + 65),
+  debt_payments: -(425 + 180 + 295),
+  phone: -85,
+  gym: -65,
+  subscriptions: -25,
+  groceries: -(110 * 4.33),
+  dining_out: -(30 * 4.33),
+  gas_transport: -(45 * 4.33),
+};
+
+const CashFlowBarChart = ({ userData, userName = "Your" }) => {
+  const sarahData = userData ?? defaultSarahData;
 
   const incomeCategories = ["Salary", "Freelance", "Investment Income"];
   const incomeAmounts = [
@@ -40,7 +41,7 @@ const CashFlowBarChart = () => {
     sarahData.debt_payments,
     sarahData.groceries + sarahData.dining_out,
     sarahData.gas_transport,
-    sarahData.phone + sarahData.gym + sarahData.subscriptions,
+    sarahData.phone + sarahData.gym + sarahData.subscriptions + (sarahData.others ?? 0),
   ];
 
   const allCategories = [...incomeCategories, ...expenseCategories];
@@ -99,7 +100,7 @@ const CashFlowBarChart = () => {
   // --- Layout ---
   const layout = {
     title: {
-      text: "💼 Sarah's Monthly Cash Flow Analysis<br><sub>Hover over bars for detailed information</sub>",
+      text: `💼 ${userName}'s Monthly Cash Flow Analysis<br><sub>Hover over bars for detailed information</sub>`,
       font: { size: 20, family: "Times New Roman", color: "#2C3E50" },
       x: 0.5,
     },

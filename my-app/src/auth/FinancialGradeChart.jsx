@@ -1,23 +1,24 @@
 import React from "react";
 import Plot from "react-plotly.js";
 
-const FinancialGradeChart = () => {
-  // --- Sample Data ---
-  const sarahData = {
-    salary: 85000 / 12,
-    freelance: 8000 / 12,
-    dividends: 1200 / 12,
-    rent: -1800,
-    utilities: -(120 + 45 + 35 + 65 + 35),
-    insurance: -(220 + 95 + 65),
-    debt_payments: -(425 + 180 + 295),
-    phone: -85,
-    gym: -65,
-    subscriptions: -25,
-    groceries: -(110 * 4.33),
-    dining_out: -(30 * 4.33),
-    gas_transport: -(45 * 4.33),
-  };
+const defaultSarahData = {
+  salary: 85000 / 12,
+  freelance: 8000 / 12,
+  dividends: 1200 / 12,
+  rent: -1800,
+  utilities: -(120 + 45 + 35 + 65 + 35),
+  insurance: -(220 + 95 + 65),
+  debt_payments: -(425 + 180 + 295),
+  phone: -85,
+  gym: -65,
+  subscriptions: -25,
+  groceries: -(110 * 4.33),
+  dining_out: -(30 * 4.33),
+  gas_transport: -(45 * 4.33),
+};
+
+const FinancialGradeChart = ({ userData, userName = "Your" }) => {
+  const sarahData = userData ?? defaultSarahData;
 
   const incomeAmounts = [
     sarahData.salary,
@@ -35,7 +36,8 @@ const FinancialGradeChart = () => {
     sarahData.gas_transport +
     sarahData.phone +
     sarahData.gym +
-    sarahData.subscriptions;
+    sarahData.subscriptions +
+    (sarahData.others ?? 0);
 
   const netCashFlow = totalIncome + totalExpenses;
 
