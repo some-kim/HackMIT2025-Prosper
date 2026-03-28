@@ -2,7 +2,6 @@ import React from "react";
 import Plot from "react-plotly.js";
 
 const SavingsProjectionChart = ({ netCashFlow = 1200, houseGoal = 50000, currentSavings = 0 }) => {
-  const monthsToGoal = netCashFlow > 0 ? Math.max(0, (houseGoal - currentSavings) / netCashFlow) : Infinity;
   const months = Array.from({ length: 24 }, (_, i) => i + 1);
   const cumulativeSavings = months.map(m => currentSavings + netCashFlow * m);
 

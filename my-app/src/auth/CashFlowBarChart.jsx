@@ -44,14 +44,6 @@ const CashFlowBarChart = ({ userData, userName = "Your" }) => {
     sarahData.phone + sarahData.gym + sarahData.subscriptions + (sarahData.others ?? 0),
   ];
 
-  const allCategories = [...incomeCategories, ...expenseCategories];
-  const allAmounts = [...incomeAmounts, ...expenseAmounts];
-  const allTypes = [
-    ...Array(incomeCategories.length).fill("Income"),
-    ...Array(expenseCategories.length).fill("Expense"),
-  ];
-  const allAbs = allAmounts.map((x) => Math.abs(x));
-
   const totalIncome = incomeAmounts.reduce((a, b) => a + b, 0);
   const totalExpenses = expenseAmounts.reduce((a, b) => a + b, 0);
   const netCashFlow = totalIncome + totalExpenses;
